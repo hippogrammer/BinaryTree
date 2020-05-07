@@ -114,73 +114,112 @@ class BinaryTree{
   }
 
   // in order search
-  inOrderSearch(searchValue, /* start at root */ root = this.root){
+  inOrderSearch(searchValue, /* start at root */ node = this.root){
     let found = false;
-    if(root){
+    if(node) {
       // traverse to left most node
-      found = this.inOrderSearch(searchValue, root.left);
+      found = this.inOrderSearch(searchValue, node.left);
       // check for match
       if(found) {
         // return boolean only when it isn't the root
-        if(root === this.root){
+        if(node === this.root){
           return;
         }
         return true;
       }
       // print message and return true because we have a match!
-      if(root.value === searchValue) {
+      if(node.value === searchValue) {
         console.log(`In Order Search: search value ${searchValue} exists in tree`);
         return true;
       }
       // if no match found in left, go right
-      found = this.inOrderSearch(searchValue, root.right);
+      found = this.inOrderSearch(searchValue, node.right);
       if(found) {
         // return boolean only when it isn't the root
-        if(root === this.root){
+        if(node === this.root){
           return;
         }return true;
       }
         // if still not found and we get to the greatest node value, then return false bc theres no more nodes to check
-      if(!found && root.value === this.greatestValueNode().value) {
-        console.log(`In Order Search: search value ${searchValue} not found`);
+      if(!found && node.value === this.greatestValueNode().value) {
+        console.log(`In Order Search: search value ${searchValue} not found in tree.`);
         return false;
       }
     }
+    // exit when node is empty
     return;
 
   }
 
   // pre order traversal
-  preOrderSearch(searchValue, /* start at root */ root = this.root) {
+  preOrderSearch(searchValue, /* start at root */ node = this.root) {
     // track if not found to display not found message;
     let found = false;
     // check root value for match
-    if (root) {
+    if (node) {
       // if match is found return true
-      if(root.value === searchValue) {
-        console.log(`Pre-Order Search: search value ${searchValue} exists in tree`);
+      if(node.value === searchValue) {
+        console.log(`Pre-Order Search: search value ${searchValue} exists in tree.`);
         return true;
       } 
       // continue search starting from left, then right
       else {
-        found = this.preOrderSearch(searchValue, root.left) || false;
-        if (!found) this.preOrderSearch(searchValue, root.right)
+        found = this.preOrderSearch(searchValue, node.left) || false;
+        if (!found) this.preOrderSearch(searchValue, node.right)
         else return true;
       }
     }
     // when value gets to the tree root's right node (last to be checked) and not found, display not found message
-    if(!found &&root && root.value === this.root.right.value){
-      console.log(`Pre-Order Search: search value ${searchValue} not found`);
+    if(!found && node && node.value === this.root.right.value){
+      console.log(`Pre-Order Search: search value ${searchValue} not found in tree.`);
       return false;
     }
-  } 
-
-  greatestValueNode(/* start at root */ root = this.root){
-    // if the node doesn't have right, return because node is the greatest value in tree
-    if(root && !root.right){
-      return root;
+  }
+  
+  postOrderSearch(searchValue, /* start at root */ node = this.root) {
+    let found = false;
+    // if node is valid
+    if(node) {
+      // if no left node
+      if(!node.left){
+        // compare values
+        if ( node.value === searchValue) {
+          console.log(`Post-Order Search: search value ${searchValue} exists in tree.`);
+          return true;
+        }
+        // if no match, check right 
+        else if ( node.right) {
+          // if right, traverse right
+           this.postOrderSearch(searchValue, node.right);
+        }
+        // if no match and no right, return false 
+        else return false;
+      }
+      // if left node exists, keep traversing 
+        found = this.postOrderSearch(searchValue, node.left);
+        // if match not found in left of root, move on to right
+        if (!found) {
+          found = this.postOrderSearch(searchValue, node.right);
+          //if match was not found and node is back to root
+          if(!found && this.root === node) {
+            // if root matches search value then print and return
+            if(node.value === searchValue) {
+              console.log(`Post-Order Search: search value ${searchValue} exists in tree.`);
+              return true;
+            } 
+          } 
+        }else {
+          return true;
+        }
     }
-    return this.greatestValueNode(root.right);
+  }
+
+  greatestValueNode(/* start at root */ node = this.root){
+    // if the node doesn't have right, return because node is the greatest value in tree
+    if(node && !node.right){
+      return node;
+    }
+    return this.greatestValueNode(node.right);
   }
 }
 
@@ -195,5 +234,8 @@ binaryTree.addNode(new Node(54));
 binaryTree.addNode(new Node(45));
 binaryTree.addNode(new Node(24));
 binaryTree.addNode(new Node(265));
-binaryTree.inOrderSearch(24);
-binaryTree.inOrderSearch(1);
+binaryTree.postOrderSearch(24);
+binaryTree.postOrderSearch(1);
+binaryTree.postOrderSearch(18);
+binaryTree.postOrderSearch(265);
+
