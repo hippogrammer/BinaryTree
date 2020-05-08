@@ -11,7 +11,7 @@ class BinaryTree{
   constructor(root){
     this.root = root;
   }
-  // pre order traversal;
+  // depth-first, pre-order traversal;
   printAllNodes(/* start at root */ node = this.root) {
     // if no more nodes to print, return
     if(!node){
@@ -26,7 +26,7 @@ class BinaryTree{
     this.printAllNodes(node.right || null);
   }
 
-  // pre-order traversal; 
+  // depth-first, pre-order traversal; 
   checkIfSubset(subTreeNode, node = this.root, inTree = false){
       if(subTreeNode.value === node.value){
         //when node is matched
@@ -60,7 +60,7 @@ class BinaryTree{
       }
   }
 
-  // pre-order traversal
+  // depth-first, pre-order traversal
   addNode(node, /* start at root */ root = this.root){
     // base case, return if nodevalue exists
     if(root.value === node.value){
@@ -95,7 +95,7 @@ class BinaryTree{
     } 
   }
 
-  // pre order traversal
+  // depth-first, pre order traversal
   printAllLeaves(/* start at root */ root = this.root) {
     // print node if leaf (no left or right nodes)
     if(!root.left && !root.right){
@@ -113,7 +113,7 @@ class BinaryTree{
     
   }
 
-  // in order search
+  // depth-first, in order search
   inOrderSearch(searchValue, /* start at root */ node = this.root){
     let found = false;
     if(node) {
@@ -151,7 +151,7 @@ class BinaryTree{
 
   }
 
-  // pre order traversal
+  // depth-first, pre order traversal
   preOrderSearch(searchValue, /* start at root */ node = this.root) {
     // track if not found to display not found message;
     let found = false;
@@ -175,7 +175,7 @@ class BinaryTree{
       return false;
     }
   }
-  
+  // depth-first, post-order traversal
   postOrderSearch(searchValue, /* start at root */ node = this.root) {
     let found = false;
     // if node is valid
@@ -200,7 +200,7 @@ class BinaryTree{
         // if match not found in left of root, move on to right
         if (!found) {
           found = this.postOrderSearch(searchValue, node.right);
-          //if match was not found and node is back to root
+          //if match was not found in right and node is back to root
           if(!found && this.root === node) {
             // if root matches search value then print and return
             if(node.value === searchValue) {
@@ -212,6 +212,34 @@ class BinaryTree{
           return true;
         }
     }
+  }
+
+  // breadth-first traversal using queue
+  breadthFirstSearch(searchValue, node = this.root) {
+    // add root to queue
+    let q = [node];
+    // traverse until queue is empty
+    while(q.length) {
+      // since its a queue, process first node
+      node = q[0];
+      // if left or/and right exist, push onto queue
+      if(node.left) {
+        q.push(node.left);
+      }
+      if(node.right) {
+        q.push(node.right);
+      }
+      // if search matches first item in queue, return
+      if(node.value === searchValue) {
+        console.log(`Breadth-First Search: search value ${searchValue} exists in tree`);
+        return;
+      }
+      //if no match, take off queue and process next node.
+      else {
+        q.shift();
+      }
+    }
+    console.log(`Breadth-First Search: search value ${searchValue} not found in tree`);
   }
   
   smallestValueNode(/* start at root */ node = this.root){
