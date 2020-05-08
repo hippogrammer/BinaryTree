@@ -213,6 +213,14 @@ class BinaryTree{
         }
     }
   }
+  
+  smallestValueNode(/* start at root */ node = this.root){
+    // if the node doesn't have right, return because node is the greatest value in tree
+    if(node && !node.left){
+      return node;
+    }
+    return this.greatestValueNode(node.left);
+  }
 
   greatestValueNode(/* start at root */ node = this.root){
     // if the node doesn't have right, return because node is the greatest value in tree
