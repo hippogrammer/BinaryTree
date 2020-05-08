@@ -65,7 +65,7 @@ class BinaryTree{
     // base case, return if nodevalue exists
     if(root.value === node.value){
       console.log(`Add node: value ${node.value} already exists in tree`);
-      return;
+      return false;
     }
     // go left if new value is greater than node
     if(node.value < root.value){
@@ -77,7 +77,7 @@ class BinaryTree{
       else{
         console.log(`node value ${node.value} added to tree`);
         root.left = node;
-        return;
+        return true;
       }
     } 
     // go right if new node value is greater than node

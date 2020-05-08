@@ -14,5 +14,4 @@
 * **Todo**: isBalanced(): _boolean_ - checks to see if the tree is balanced. Checks for left and right depths and returns a boolean.  
 * **Todo**: balanceTree(): _void_ - balances tree. _Implementation not thought out yet_
 * **Todo**: breadthFirstSearch(): _boolean_ - searches the tree using **breadth-first traversal**. _Implementation not thought out yet_, probably will use array for rebalancing.
-* **Todo**: depthFirstSearch(): _boolean_ - searches the tree using **depth-first traversal**. _Implementation not thought out yet_
 
