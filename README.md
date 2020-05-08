@@ -12,7 +12,7 @@
 * **getGreatestValueNode(): _Node_** - returns the node with the greatest value in tree. Traverses to the right of tree and returns node when it doesn't have a right node.
 * **Todo**: getSmallestValueNode(): _Node_ - returns the node with smallest value in tree. Traverse to the left of tree and return node when it doesn't have a left value.
 * **Todo**: isBalanced(): _boolean_ - checks to see if the tree is balanced. Checks for left and right depths and returns a boolean.  
-* **Todo**: balanceTree(): _void_ - balances tree. **Implementation not thought out yet**
-* **Todo**: breadthFirstSearch(): _boolean_ - searches the tree using **breadth-first traversal**. _Implementation not thought out yet_, probably will implement array or linked list.
-* **Todo**: depthFirstSearch(): _void_ - searches the tree using **depth-first traversal**. _Implementation not thought out yet_
+* **Todo**: balanceTree(): _void_ - balances tree. _Implementation not thought out yet_
+* **Todo**: breadthFirstSearch(): _boolean_ - searches the tree using **breadth-first traversal**. _Implementation not thought out yet_, probably will use array for rebalancing.
+* **Todo**: depthFirstSearch(): _boolean_ - searches the tree using **depth-first traversal**. _Implementation not thought out yet_
 
