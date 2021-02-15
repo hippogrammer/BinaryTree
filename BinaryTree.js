@@ -6,7 +6,8 @@ class Node {
   }
 }
 
-// O(log n) time complexity
+// O(log n) time complexity for binary search
+// O(n) for search
 class BinaryTree{
   constructor(root){
     this.root = root;
@@ -247,7 +248,7 @@ class BinaryTree{
     if(node && !node.left){
       return node;
     }
-    return this.greatestValueNode(node.left);
+    return this.smallestValueNode(node.left);
   }
 
   greatestValueNode(/* start at root */ node = this.root){
