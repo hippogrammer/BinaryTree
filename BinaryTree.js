@@ -6,8 +6,8 @@ class Node {
   }
 }
 
-// O(log n) time complexity for binary search
-// O(n) for search
+// O(log n) average time complexity for a balanced tree
+// O(n) for search for unbalanced trees
 class BinaryTree{
   constructor(root){
     this.root = root;
